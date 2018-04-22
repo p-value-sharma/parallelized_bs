@@ -6,7 +6,10 @@ library(parallel)
 # creating fake data ####
 set.seed(3)
 n_regions = 80
-outcome <- unlist(lapply(1:n_regions, function(x) rnorm(n = 20, mean = 1000, sd = 100)))
+n_total_obs <- 20
+
+# the number of pre and post obs is simply half of n_total_obs but that can change 
+outcome <- unlist(lapply(1:n_regions, function(x) rnorm(n = n_total_obs, mean = 1000, sd = 100)))
 regions <- rep(paste('r', sample(x = 1:200, size = n_regions, replace = F), sep = '_'), each = n_regions)
 interv_era <- c(rep(0, 10), rep(1, 10))
 df <- data.frame(region = regions, outcome, interv_era)
